@@ -74,7 +74,7 @@ impl BacklightManager {
     fn display_to_touchbar(display: u32) -> u32 {
         let normalized = display as f64 / MAX_DISPLAY_BRIGHTNESS as f64;
         // Add one so that the touch bar does not turn off
-        let adjusted = (normalized.powf(0.5) * MAX_TOUCH_BAR_BRIGHTNESS as f64) as u32 + 1;
+        let adjusted = (normalized * MAX_TOUCH_BAR_BRIGHTNESS as f64) as u32 + 1;
         adjusted.min(MAX_TOUCH_BAR_BRIGHTNESS) // Clamp the value to the maximum allowed brightness
     }
     pub fn process_event(&mut self, event: &Event) {
